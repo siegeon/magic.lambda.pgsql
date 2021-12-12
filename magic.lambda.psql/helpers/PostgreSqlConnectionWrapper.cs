@@ -3,7 +3,7 @@
  */
 
 using System;
-using MySql.Data.MySqlClient;
+using Npgsql;
 
 namespace magic.lambda.psql.helpers
 {
@@ -13,22 +13,22 @@ namespace magic.lambda.psql.helpers
      */
     internal sealed class PostgreSqlConnectionWrapper : IDisposable
     {
-        readonly Lazy<MySqlConnection> _connection;
+        readonly Lazy<NpgsqlConnection> _connection;
 
         public PostgreSqlConnectionWrapper(string connectionString)
         {
-            _connection = new Lazy<MySqlConnection>(() =>
+            _connection = new Lazy<NpgsqlConnection>(() =>
             {
-                var connection = new MySqlConnection(connectionString);
+                var connection = new NpgsqlConnection(connectionString);
                 connection.Open();
                 return connection;
             });
         }
 
         /*
-         * Property to retrieve underlying MySQL connection.
+         * Property to retrieve underlying PostgreSQL connection.
          */
-        public MySqlConnection Connection => _connection.Value;
+        public NpgsqlConnection Connection => _connection.Value;
 
         public void Dispose()
         {
