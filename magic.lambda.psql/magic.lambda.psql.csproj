@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>magic.lambda.psql</PackageId>
+    <Authors>Thomas Hansen</Authors>
+    <Company>Aista, Ltd</Company>
+    <Copyright>Aista, Ltd, thomas@servergardens.com</Copyright>
+    <Description>PostgreSQL helper slots for Magic allowing you to easily connect to a PostgreSQL database, and read, update, delete and insert into your database. To use package go to https://polterguy.github.io</Description>
+    <PackageProjectUrl>https://github.com/polterguy/magic.lambda.psql</PackageProjectUrl>
+    <PackOnBuild>true</PackOnBuild>
+    <PackageVersion>10.0.1</PackageVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/polterguy/magic.lambda.psql.git</RepositoryUrl>
+    <PackageTags>postgresql, sql, data adapter, hyperlambda, orm, dal</PackageTags>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageIcon>ico.png</PackageIcon>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <None Include="..\README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../ico.png" Pack="true" PackagePath="$(PackageIcon)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin/Release/netstandard2.0/magic.lambda.psql.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.27" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+    <PackageReference Include="magic.data.common" Version="9.9.9" />
+  </ItemGroup>
+
+</Project>
