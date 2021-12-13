@@ -70,7 +70,7 @@ namespace magic.lambda.pgsql.crud
             // Executing SQL, now parametrized.
             await help.Executor.ExecuteAsync(
                 exe,
-                signaler.Peek<PostgreSqlConnectionWrapper>("pgsql.connect").Connection,
+                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
                 signaler.Peek<help.Transaction>("pgsql.transaction"),
                 async (cmd, _) =>
             {

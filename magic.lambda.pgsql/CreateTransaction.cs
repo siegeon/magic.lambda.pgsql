@@ -5,7 +5,7 @@
 using magic.node;
 using magic.signals.contracts;
 using System.Threading.Tasks;
-using magic.lambda.psql.helpers;
+using magic.lambda.pgsql.helpers;
 using hlp = magic.data.common.helpers;
 
 namespace magic.lambda.pgsql

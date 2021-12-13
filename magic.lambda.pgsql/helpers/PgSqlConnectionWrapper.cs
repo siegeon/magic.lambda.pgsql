@@ -5,7 +5,7 @@
 using System;
 using Npgsql;
 
-namespace magic.lambda.psql.helpers
+namespace magic.lambda.pgsql.helpers
 {
     /*
      * Internal helper class to create a MySqlConnection lazy, such that it is not actuall created

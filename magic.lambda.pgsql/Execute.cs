@@ -43,7 +43,7 @@ namespace magic.lambda.pgsql
         {
             await Executor.ExecuteAsync(
                 input,
-                signaler.Peek<PostgreSqlConnectionWrapper>("pgsql.connect").Connection,
+                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
                 signaler.Peek<Transaction>("pgsql.transaction"),
                 async (cmd, _) =>
             {

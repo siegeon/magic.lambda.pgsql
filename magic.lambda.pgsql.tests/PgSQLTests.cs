@@ -277,7 +277,7 @@ namespace magic.lambda.pgsql.tests
    values
       foo1:bar1
       foo2:int:5");
-            Assert.Equal("insert into \"SomeTable\" (\"foo1\", \"foo2\") values (@0, @1); select last_insert_id();", lambda.Children.First().Value);
+            Assert.Equal("insert into \"SomeTable\" (\"foo1\", \"foo2\") values (@0, @1) returning *", lambda.Children.First().Value);
             Assert.Equal(2, lambda.Children.First().Children.Count());
             Assert.Equal("@0", lambda.Children.First().Children.First().Name);
             Assert.Equal("bar1", lambda.Children.First().Children.First().Value);
@@ -294,7 +294,7 @@ namespace magic.lambda.pgsql.tests
    values
       foo1:bar1
       foo2:int:5");
-            Assert.Equal("insert into \"SomeTable\" (\"foo1\", \"foo2\") values (@0, @1); select last_insert_id();", lambda.Children.First().Value);
+            Assert.Equal("insert into \"SomeTable\" (\"foo1\", \"foo2\") values (@0, @1) returning *", lambda.Children.First().Value);
             Assert.Equal(2, lambda.Children.First().Children.Count());
             Assert.Equal("@0", lambda.Children.First().Children.First().Name);
             Assert.Equal("bar1", lambda.Children.First().Children.First().Value);
@@ -329,7 +329,7 @@ namespace magic.lambda.pgsql.tests
    values
       foo1:bar1
       foo2");
-            Assert.Equal("insert into \"SomeTable\" (\"foo1\", \"foo2\") values (@0, null); select last_insert_id();", lambda.Children.First().Value);
+            Assert.Equal("insert into \"SomeTable\" (\"foo1\", \"foo2\") values (@0, null) returning *", lambda.Children.First().Value);
             Assert.Single(lambda.Children.First().Children);
             Assert.Equal("@0", lambda.Children.First().Children.First().Name);
             Assert.Equal("bar1", lambda.Children.First().Children.First().Value);

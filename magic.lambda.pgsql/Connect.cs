@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using magic.node;
 using magic.signals.contracts;
 using magic.data.common.helpers;
-using magic.lambda.psql.helpers;
+using magic.lambda.pgsql.helpers;
 
 namespace magic.lambda.pgsql
 {
@@ -58,7 +58,7 @@ namespace magic.lambda.pgsql
         /// <returns>An awaitable task.</returns>
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            using (var connection = new PostgreSqlConnectionWrapper(
+            using (var connection = new PgSqlConnectionWrapper(
                 Executor.GetConnectionString(
                     input,
                     "psql",
