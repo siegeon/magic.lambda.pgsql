@@ -61,12 +61,12 @@ namespace magic.lambda.pgsql
             using (var connection = new PgSqlConnectionWrapper(
                 Executor.GetConnectionString(
                     input,
-                    "psql",
+                    "pgsql",
                     "postgres",
                     _configuration)))
             {
                 await signaler.ScopeAsync(
-                    "psql.connect",
+                    "pgsql.connect",
                     connection,
                     async () => await signaler.SignalAsync("eval", input));
                 input.Value = null;

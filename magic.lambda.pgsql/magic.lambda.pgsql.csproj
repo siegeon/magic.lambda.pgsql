@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>magic.lambda.psql</PackageId>
+    <PackageId>magic.lambda.pgsql</PackageId>
     <Authors>Thomas Hansen</Authors>
     <Company>Aista, Ltd</Company>
     <Copyright>Aista, Ltd, thomas@servergardens.com</Copyright>

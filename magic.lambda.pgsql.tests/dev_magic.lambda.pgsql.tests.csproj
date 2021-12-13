@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>magic.lambda.psql.tests</AssemblyName>
+    <AssemblyName>magic.lambda.pgsql.tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -24,7 +24,7 @@ namespace magic.lambda.pgsql
         public void Signal(ISignaler signaler, Node input)
         {
             signaler.Scope(
-                "psql.transaction",
+                "pgsql.transaction",
                 new hlp.Transaction(signaler, signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection),
                 () => signaler.Signal("eval", input));
         }
@@ -38,7 +38,7 @@ namespace magic.lambda.pgsql
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
             await signaler.ScopeAsync(
-                "psql.transaction",
+                "pgsql.transaction",
                 new hlp.Transaction(signaler, signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection),
                 async () => await signaler.SignalAsync("eval", input));
         }
