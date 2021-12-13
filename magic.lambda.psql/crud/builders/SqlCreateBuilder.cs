@@ -20,7 +20,7 @@ namespace magic.lambda.psql.crud.builders
         /// </summary>
         /// <param name="node">Root node to generate your SQL from.</param>
         public SqlCreateBuilder(Node node)
-            : base(node, "`")
+            : base(node, "\"")
         { }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace magic.lambda.psql.crud.builders
         /// <param name="builder">Where to put your tail.</param>
         protected override void AppendTail(StringBuilder builder)
         {
-            builder.Append("; select last_insert_id();");
+            builder.Append(" returning *");
         }
     }
 }

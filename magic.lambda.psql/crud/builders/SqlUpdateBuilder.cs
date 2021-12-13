@@ -19,7 +19,7 @@ namespace magic.lambda.psql.crud.builders
         /// </summary>
         /// <param name="node">Root node to generate your SQL from.</param>
         public SqlUpdateBuilder(Node node)
-            : base(node, "`")
+            : base(node, "\"")
         { }
     }
 }
