@@ -8,12 +8,12 @@
     <Company>Aista, Ltd</Company>
     <Copyright>Aista, Ltd, thomas@servergardens.com</Copyright>
     <Description>PostgreSQL helper slots for Magic allowing you to easily connect to a PostgreSQL database, and read, update, delete and insert into your database. To use package go to https://polterguy.github.io</Description>
-    <PackageProjectUrl>https://github.com/polterguy/magic.lambda.psql</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/polterguy/magic.lambda.pgsql</PackageProjectUrl>
     <PackOnBuild>true</PackOnBuild>
     <PackageVersion>10.0.1</PackageVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/polterguy/magic.lambda.psql.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/polterguy/magic.lambda.pgsql.git</RepositoryUrl>
     <PackageTags>postgresql, sql, data adapter, hyperlambda, orm, dal</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin/Release/netstandard2.0/magic.lambda.psql.xml</DocumentationFile>
+    <DocumentationFile>bin/Release/netstandard2.0/magic.lambda.pgsql.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

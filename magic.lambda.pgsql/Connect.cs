@@ -9,12 +9,12 @@ using magic.signals.contracts;
 using magic.data.common.helpers;
 using magic.lambda.psql.helpers;
 
-namespace magic.lambda.psql
+namespace magic.lambda.pgsql
 {
     /// <summary>
-    /// [psql.connect] slot for connecting to a PostgreSQL server instance.
+    /// [pgsql.connect] slot for connecting to a PostgreSQL server instance.
     /// </summary>
-    [Slot(Name = "psql.connect")]
+    [Slot(Name = "pgsql.connect")]
     public class Connect : ISlot, ISlotAsync
     {
         readonly IConfiguration _configuration;
@@ -35,15 +35,15 @@ namespace magic.lambda.psql
         /// <param name="input">Root node for invocation.</param>
         public void Signal(ISignaler signaler, Node input)
         {
-            using (var connection = new PostgreSqlConnectionWrapper(
+            using (var connection = new PgSqlConnectionWrapper(
                 Executor.GetConnectionString(
                     input,
-                    "psql",
+                    "pgsql",
                     "postgres",
                     _configuration)))
             {
                 signaler.Scope(
-                    "psql.connect",
+                    "pgsql.connect",
                     connection,
                     () => signaler.Signal("eval", input));
                 input.Value = null;

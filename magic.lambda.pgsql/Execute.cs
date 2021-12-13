@@ -4,18 +4,17 @@
 
 using System.Threading.Tasks;
 using magic.node;
-using magic.data.common;
 using magic.signals.contracts;
 using magic.data.common.helpers;
-using magic.lambda.psql.helpers;
+using magic.lambda.pgsql.helpers;
 
-namespace magic.lambda.psql
+namespace magic.lambda.pgsql
 {
     /// <summary>
-    /// [psql.scalar] slot for executing a scalar type of SQL command.
+    /// [pgsql.execute] slot for executing a non query SQL command.
     /// </summary>
-    [Slot(Name = "psql.scalar")]
-    public class Scalar : ISlot, ISlotAsync
+    [Slot(Name = "pgsql.execute")]
+    public class Execute : ISlot, ISlotAsync
     {
         /// <summary>
         /// Handles the signal for the class.
@@ -26,11 +25,11 @@ namespace magic.lambda.psql
         {
             Executor.Execute(
                 input,
-                signaler.Peek<PostgreSqlConnectionWrapper>("psql.connect").Connection,
-                signaler.Peek<Transaction>("psql.transaction"),
+                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
+                signaler.Peek<Transaction>("pgsql.transaction"),
                 (cmd, _) =>
             {
-                input.Value = Converter.GetValue(cmd.ExecuteScalar());
+                input.Value = cmd.ExecuteNonQuery();
             });
         }
 
@@ -44,11 +43,11 @@ namespace magic.lambda.psql
         {
             await Executor.ExecuteAsync(
                 input,
-                signaler.Peek<PostgreSqlConnectionWrapper>("psql.connect").Connection,
-                signaler.Peek<Transaction>("psql.transaction"),
+                signaler.Peek<PostgreSqlConnectionWrapper>("pgsql.connect").Connection,
+                signaler.Peek<Transaction>("pgsql.transaction"),
                 async (cmd, _) =>
             {
-                input.Value = await cmd.ExecuteScalarAsync();
+                input.Value = await cmd.ExecuteNonQueryAsync();
             });
         }
     }

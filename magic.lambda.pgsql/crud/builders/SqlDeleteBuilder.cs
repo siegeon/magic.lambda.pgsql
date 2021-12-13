@@ -6,19 +6,19 @@ using magic.node;
 using magic.signals.contracts;
 using builder = magic.data.common.builders;
 
-namespace magic.lambda.psql.crud.builders
+namespace magic.lambda.pgsql.crud.builders
 {
     /// <summary>
-    /// Specialised select SQL builder, to create a select MySQL SQL statement
+    /// Specialised delete SQL builder, to create a delete MySQL SQL statement
     /// by semantically traversing an input node.
     /// </summary>
-    public class SqlReadBuilder : builder.SqlReadBuilder
+    public class SqlDeleteBuilder : builder.SqlDeleteBuilder
     {
         /// <summary>
-        /// Creates a select SQL statement
+        /// Creates a delete SQL statement
         /// </summary>
         /// <param name="node">Root node to generate your SQL from.</param>
-        public SqlReadBuilder(Node node)
+        public SqlDeleteBuilder(Node node)
             : base(node, "\"")
         { }
     }

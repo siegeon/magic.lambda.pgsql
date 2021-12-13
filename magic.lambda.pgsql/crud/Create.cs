@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using magic.node;
 using magic.node.extensions;
 using magic.signals.contracts;
-using magic.lambda.psql.helpers;
-using magic.lambda.psql.crud.builders;
+using magic.lambda.pgsql.helpers;
+using magic.lambda.pgsql.crud.builders;
 using help = magic.data.common.helpers;
 using build = magic.data.common.builders;
 
-namespace magic.lambda.psql.crud
+namespace magic.lambda.pgsql.crud
 {
     /// <summary>
-    /// The [psql.create] slot class
+    /// The [pgsql.create] slot class
     /// </summary>
-    [Slot(Name = "psql.create")]
+    [Slot(Name = "pgsql.create")]
     public class Create : ISlot, ISlotAsync
     {
         /// <summary>
@@ -50,8 +50,8 @@ namespace magic.lambda.psql.crud
             // Executing SQL, now parametrized.
             help.Executor.Execute(
                 exe,
-                signaler.Peek<PostgreSqlConnectionWrapper>("psql.connect").Connection,
-                signaler.Peek<help.Transaction>("psql.transaction"),
+                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
+                signaler.Peek<help.Transaction>("pgsql.transaction"),
                 (cmd, _) =>
             {
                 /*
@@ -102,8 +102,8 @@ namespace magic.lambda.psql.crud
             // Executing SQL, now parametrized.
             await help.Executor.ExecuteAsync(
                 exe,
-                signaler.Peek<PostgreSqlConnectionWrapper>("psql.connect").Connection,
-                signaler.Peek<help.Transaction>("psql.transaction"),
+                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
+                signaler.Peek<help.Transaction>("pgsql.transaction"),
                 async (cmd, _) =>
             {
                 /*

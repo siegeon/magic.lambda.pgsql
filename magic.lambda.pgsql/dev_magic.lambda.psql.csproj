@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>magic.lambda.psql</AssemblyName>
+    <AssemblyName>magic.lambda.pgsql</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +12,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\magic.data.common\magic.data.common\dev_magic.data.common.csproj" />
+    <ProjectReference Include="..\..\magic.lambda\magic.lambda\dev_magic.lambda.csproj" />
+    <ProjectReference Include="..\..\magic.signals\magic.signals.services\dev_magic.signals.services.csproj" />
+    <ProjectReference Include="..\magic.lambda.gpsql\dev_magic.lambda.gpsql.csproj" />
   </ItemGroup>
 
 </Project>

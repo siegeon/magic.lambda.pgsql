@@ -6,13 +6,13 @@ using magic.node;
 using magic.signals.contracts;
 using magic.data.common.helpers;
 
-namespace magic.lambda.psql
+namespace magic.lambda.pgsql
 {
     /// <summary>
-    /// [psql.transaction.commit] slot for committing the top level MySQL
+    /// [pgsql.transaction.commit] slot for committing the top level MySQL
     /// database transaction.
     /// </summary>
-    [Slot(Name = "psql.transaction.commit")]
+    [Slot(Name = "pgsql.transaction.commit")]
     public class CommitTransaction : ISlot
     {
         /// <summary>
@@ -22,7 +22,7 @@ namespace magic.lambda.psql
         /// <param name="input">Root node for invocation.</param>
         public void Signal(ISignaler signaler, Node input)
         {
-            signaler.Peek<Transaction>("psql.transaction").Commit();
+            signaler.Peek<Transaction>("pgsql.transaction").Commit();
         }
     }
 }

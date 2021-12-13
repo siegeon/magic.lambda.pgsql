@@ -11,11 +11,11 @@ namespace magic.lambda.psql.helpers
      * Internal helper class to create a MySqlConnection lazy, such that it is not actuall created
      * before it's actually de-referenced.
      */
-    internal sealed class PostgreSqlConnectionWrapper : IDisposable
+    internal sealed class PgSqlConnectionWrapper : IDisposable
     {
         readonly Lazy<NpgsqlConnection> _connection;
 
-        public PostgreSqlConnectionWrapper(string connectionString)
+        public PgSqlConnectionWrapper(string connectionString)
         {
             _connection = new Lazy<NpgsqlConnection>(() =>
             {

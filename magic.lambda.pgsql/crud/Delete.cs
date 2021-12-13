@@ -5,17 +5,17 @@
 using System.Threading.Tasks;
 using magic.node;
 using magic.signals.contracts;
-using magic.lambda.psql.helpers;
-using magic.lambda.psql.crud.builders;
+using magic.lambda.pgsql.helpers;
+using magic.lambda.pgsql.crud.builders;
 using help = magic.data.common.helpers;
 using build = magic.data.common.builders;
 
-namespace magic.lambda.psql.crud
+namespace magic.lambda.pgsql.crud
 {
     /// <summary>
-    /// The [psql.delete] slot class
+    /// The [pgsql.delete] slot class
     /// </summary>
-    [Slot(Name = "psql.delete")]
+    [Slot(Name = "pgsql.delete")]
     public class Delete : ISlot, ISlotAsync
     {
         /// <summary>
@@ -33,8 +33,8 @@ namespace magic.lambda.psql.crud
             // Executing SQL, now parametrized.
             help.Executor.Execute(
                 exe,
-                signaler.Peek<PostgreSqlConnectionWrapper>("psql.connect").Connection,
-                signaler.Peek<help.Transaction>("psql.transaction"),
+                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
+                signaler.Peek<help.Transaction>("pgsql.transaction"),
                 (cmd, _) =>
             {
                 input.Value = cmd.ExecuteNonQuery();
@@ -58,8 +58,8 @@ namespace magic.lambda.psql.crud
             // Executing SQL, now parametrized.
             await help.Executor.ExecuteAsync(
                 exe,
-                signaler.Peek<PostgreSqlConnectionWrapper>("psql.connect").Connection,
-                signaler.Peek<help.Transaction>("psql.transaction"),
+                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
+                signaler.Peek<help.Transaction>("pgsql.transaction"),
                 async (cmd, _) =>
             {
                 input.Value = await cmd.ExecuteNonQueryAsync();

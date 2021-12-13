@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using magic.node;
 using magic.signals.contracts;
 using magic.data.common.helpers;
-using magic.lambda.psql.helpers;
+using magic.lambda.pgsql.helpers;
 
-namespace magic.lambda.psql
+namespace magic.lambda.pgsql
 {
     /// <summary>
-    /// [psql.select] slot for executing a select type of SQL command, that returns
+    /// [pgsql.select] slot for executing a select type of SQL command, that returns
     /// a row set.
     /// </summary>
-    [Slot(Name = "psql.select")]
+    [Slot(Name = "pgsql.select")]
     public class Select : ISlot, ISlotAsync
     {
         /// <summary>
@@ -30,8 +30,8 @@ namespace magic.lambda.psql
             // Invoking execute helper.
             Executor.Execute(
                 input,
-                signaler.Peek<PostgreSqlConnectionWrapper>("psql.connect").Connection,
-                signaler.Peek<Transaction>("psql.transaction"),
+                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
+                signaler.Peek<Transaction>("pgsql.transaction"),
                 (cmd, max) =>
             {
                 using (var reader = cmd.ExecuteReader())
@@ -68,8 +68,8 @@ namespace magic.lambda.psql
             // Invoking execute helper.
             await Executor.ExecuteAsync(
                 input,
-                signaler.Peek<PostgreSqlConnectionWrapper>("psql.connect").Connection,
-                signaler.Peek<Transaction>("psql.transaction"),
+                signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection,
+                signaler.Peek<Transaction>("pgsql.transaction"),
                 async (cmd, max) =>
             {
                 using (var reader = await cmd.ExecuteReaderAsync())

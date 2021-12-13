@@ -2,19 +2,19 @@
  * Magic Cloud, copyright Aista, Ltd. See the attached LICENSE file for details.
  */
 
-using System.Threading.Tasks;
 using magic.node;
 using magic.signals.contracts;
-using magic.data.common.helpers;
+using System.Threading.Tasks;
 using magic.lambda.psql.helpers;
+using hlp = magic.data.common.helpers;
 
-namespace magic.lambda.psql
+namespace magic.lambda.pgsql
 {
     /// <summary>
-    /// [psql.execute] slot for executing a non query SQL command.
+    /// [pgsql.transaction.create] slot for creating a new MySQL database transaction.
     /// </summary>
-    [Slot(Name = "psql.execute")]
-    public class Execute : ISlot, ISlotAsync
+    [Slot(Name = "pgsql.transaction.create")]
+    public class CreateTransaction : ISlot, ISlotAsync
     {
         /// <summary>
         /// Handles the signal for the class.
@@ -23,14 +23,10 @@ namespace magic.lambda.psql
         /// <param name="input">Root node for invocation.</param>
         public void Signal(ISignaler signaler, Node input)
         {
-            Executor.Execute(
-                input,
-                signaler.Peek<PostgreSqlConnectionWrapper>("psql.connect").Connection,
-                signaler.Peek<Transaction>("psql.transaction"),
-                (cmd, _) =>
-            {
-                input.Value = cmd.ExecuteNonQuery();
-            });
+            signaler.Scope(
+                "psql.transaction",
+                new hlp.Transaction(signaler, signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection),
+                () => signaler.Signal("eval", input));
         }
 
         /// <summary>
@@ -41,14 +37,10 @@ namespace magic.lambda.psql
         /// <returns>An awaitable task.</returns>
         public async Task SignalAsync(ISignaler signaler, Node input)
         {
-            await Executor.ExecuteAsync(
-                input,
-                signaler.Peek<PostgreSqlConnectionWrapper>("psql.connect").Connection,
-                signaler.Peek<Transaction>("psql.transaction"),
-                async (cmd, _) =>
-            {
-                input.Value = await cmd.ExecuteNonQueryAsync();
-            });
+            await signaler.ScopeAsync(
+                "psql.transaction",
+                new hlp.Transaction(signaler, signaler.Peek<PgSqlConnectionWrapper>("pgsql.connect").Connection),
+                async () => await signaler.SignalAsync("eval", input));
         }
     }
 }

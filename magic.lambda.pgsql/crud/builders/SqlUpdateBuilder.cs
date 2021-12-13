@@ -6,7 +6,7 @@ using magic.node;
 using magic.signals.contracts;
 using builder = magic.data.common.builders;
 
-namespace magic.lambda.psql.crud.builders
+namespace magic.lambda.pgsql.crud.builders
 {
     /// <summary>
     /// Specialised update SQL builder, to create a select MySQL SQL statement

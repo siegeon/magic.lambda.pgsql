@@ -6,13 +6,13 @@ using magic.node;
 using magic.signals.contracts;
 using magic.data.common.helpers;
 
-namespace magic.lambda.psql
+namespace magic.lambda.pgsql
 {
     /// <summary>
-    /// [psql.transaction.rollback] slot for rolling back the top level MySQL
+    /// [pgsql.transaction.rollback] slot for rolling back the top level MySQL
     /// database transaction.
     /// </summary>
-    [Slot(Name = "psql.transaction.rollback")]
+    [Slot(Name = "pgsql.transaction.rollback")]
     public class RollbackTransaction : ISlot
     {
         /// <summary>
@@ -22,7 +22,7 @@ namespace magic.lambda.psql
         /// <param name="input">Root node for invocation.</param>
         public void Signal(ISignaler signaler, Node input)
         {
-            signaler.Peek<Transaction>("psql.transaction").Rollback();
+            signaler.Peek<Transaction>("pgsql.transaction").Rollback();
         }
     }
 }
