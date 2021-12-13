@@ -39,7 +39,7 @@ namespace magic.lambda.psql
                 Executor.GetConnectionString(
                     input,
                     "psql",
-                    "information_schema",
+                    "postgres",
                     _configuration)))
             {
                 signaler.Scope(
@@ -62,7 +62,7 @@ namespace magic.lambda.psql
                 Executor.GetConnectionString(
                     input,
                     "psql",
-                    "information_schema",
+                    "postgres",
                     _configuration)))
             {
                 await signaler.ScopeAsync(
